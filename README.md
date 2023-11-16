@@ -4,9 +4,11 @@ This is a fairly straightforward setup for making a NixOS system configuration s
 
 This means:
 - `nix-channel` is disabled
-- Nixpkgs is managed with [niv](https://github.com/nmattia/niv)
+- Nixpkgs is managed with [niv](https://github.com/nmattia/niv) [^1]
 - The same Nixpkgs is used for the system and all Nix commands
 - This includes the Nixpkgs version, config and overlays
+
+[^1]: Yes niv is a third-party tool, but it's essentially just a nice wrapper around `nix-prefetch-url` and co.
 
 ## Usage
 

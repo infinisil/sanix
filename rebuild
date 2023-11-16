@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# nix-instantiate --eval has no raw mode yet
+nixpkgsPath=$(nix-instantiate --eval --read-write-mode nixpkgs/path.nix | tr -d \")
+# Get the ./root.nix relative to this script
+configPath=$(realpath -- "$(dirname -- "${BASH_SOURCE[0]}")/root.nix")
+
+# nixos-rebuild always reads Nixpkgs from the NIX_PATH,
+# so we need to set it explicitly to our pinned version
+NIX_PATH=nixpkgs=$nixpkgsPath:nixos-config=$configPath
+export NIX_PATH
+
+exec nixos-rebuild "$@"

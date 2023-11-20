@@ -30,5 +30,5 @@
 
   # This option is broken when set false, prevent people from setting it to false
   # And we implement the important bit above ourselves
-  nix.channels.enable = true;
+  nix.channel.enable = true;
 }

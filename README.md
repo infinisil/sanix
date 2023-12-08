@@ -34,7 +34,7 @@ We're assuming that you just installed NixOS by going through the [official inst
 3. Pin Nixpkgs to the [latest stable version](https://nixos.org/manual/nixos/stable/release-notes) using [niv](https://github.com/nmattia/niv):
    ```
    nix-shell -p niv --run \
-     'niv init --nixpkgs NixOS/nixpkgs --nixpkgs-branch nixos-23.05'
+     'niv init --nixpkgs NixOS/nixpkgs --nixpkgs-branch nixos-23.11'
    ```
 4. Remove all stateful channels:
    ```

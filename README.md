@@ -19,7 +19,7 @@ We're assuming that you just installed NixOS by going through the [official inst
 1. Clone this repo to a local directory and enter it:
    ```
    nix-shell -p git --run \
-     'git clone https://github.com/infinisil/sane-stable-nixos nixos'
+     'git clone https://github.com/infinisil/sanix nixos'
    cd nixos
    ```
 2. Add your initial NixOS configuration files, either

@@ -23,12 +23,5 @@
   ];
   environment.variables.NIXPKGS_CONFIG = lib.mkForce (toString ./nixpkgs/config.nix);
 
-  # Remove the stateful nix-channel command
-  environment.extraSetup = ''
-    rm --force $out/bin/nix-channel
-  '';
-
-  # This option is broken when set false, prevent people from setting it to false
-  # And we implement the important bit above ourselves
-  nix.channel.enable = true;
+  nix.channel.enable = false;
 }

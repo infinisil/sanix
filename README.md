@@ -4,11 +4,11 @@ This is a fairly straightforward setup for making a NixOS system configuration s
 
 This means:
 - `nix-channel` is disabled
-- Nixpkgs is managed with [niv](https://github.com/nmattia/niv) [^1]
+- Nixpkgs is managed with [niv](https://github.com/nmattia/niv) or [npins](https://github.com/andir/npins)  [^1]
 - The same Nixpkgs is used for the system and all Nix commands
 - This includes the Nixpkgs version, config and overlays
 
-[^1]: Yes niv is a third-party tool, but it's essentially just a nice wrapper around `nix-prefetch-url` and co.
+[^1]: Yes niv and npins are third-party tools, but they're essentially just nice wrappers around `nix-prefetch-url` and co.
 
 ## Usage
 
@@ -31,10 +31,17 @@ We're assuming that you just installed NixOS by going through the [official inst
      ```
      nixos-generate-config --dir .
      ```
-3. Pin Nixpkgs to the [latest stable version](https://nixos.org/manual/nixos/stable/release-notes) using [niv](https://github.com/nmattia/niv):
+3. Pin Nixpkgs to the [latest stable version](https://nixos.org/manual/nixos/stable/release-notes) using [niv](https://github.com/nmattia/niv) or [npins](https://github.com/andir/npins):
    ```
    nix-shell -p niv --run \
      'niv init --nixpkgs NixOS/nixpkgs --nixpkgs-branch nixos-23.11'
+   ```
+   or
+   ```
+   nix-shell -p npins
+     npins init --bare
+     npins add --name nixpkgs github nixos nixpkgs --branch nixos-23.11
+     exit
    ```
 4. Remove all stateful channels:
    ```
@@ -54,9 +61,18 @@ Here are some changes you can make:
   ```
   niv update nixpkgs
   ```
+  or
+  ```
+  npins update nixpkgs
+  ```
 - Upgrade to a newer release:
   ```
   niv update nixpkgs --branch nixos-23.11
+  ```
+  or
+
+  ```
+  npins add --name nixpkgs github nixos nixpkgs --branch nixos-24.05
   ```
 - Change the Nixpkgs config by editing `nixpkgs/config.nix`
 - Add Nixpkgs overlays to `nixpkgs/overlays.nix`
